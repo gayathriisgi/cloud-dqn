@@ -1,0 +1,102 @@
+{
+  "verdict": "GOOD FIT",
+  "reasons": [
+    "validation score 1.1023 beats best reference 'least_active' (1.0602); train/val gap 0.0124 within tolerance 0.15; held-out/train TD-loss ratio 0.98"
+  ],
+  "best_val_score": 1.1022822689436018,
+  "val_score_in_distribution": 1.0766273916543154,
+  "val_score_heldout_families": 1.1792469008114606,
+  "train_probe_score": 1.0890424715737497,
+  "generalisation_gap": 0.012415079919434246,
+  "td_loss_ratio_val_over_train": 0.9786567556762096,
+  "reference_scores": {
+    "round_robin": 0.9332637017446266,
+    "random": 0.8997423447557762,
+    "least_active": 1.0601594232524005
+  },
+  "best_reference": "least_active",
+  "final_val_score": 1.0735135982657897,
+  "best_episode": 40,
+  "episodes_run": 80,
+  "stopped_early_at": 80,
+  "elapsed_seconds": 407.7,
+  "validation_modes": [
+    "slow_plus_overload",
+    "three_degraded",
+    "flapping",
+    "failure_then_recovery",
+    "mixed_dynamic",
+    "high_latency_one",
+    "uniform_high",
+    "uniform_low"
+  ],
+  "heldout_modes": [
+    "slow_plus_overload",
+    "three_degraded"
+  ],
+  "hyperparams": {
+    "n_servers": 4,
+    "action_dim": 4,
+    "state_dim": 46,
+    "hidden_sizes": [
+      256,
+      128
+    ],
+    "learning_rate": 0.001,
+    "gamma": 0.9,
+    "epsilon_start": 1.0,
+    "epsilon_min": 0.05,
+    "epsilon_decay": 0.995,
+    "batch_size": 64,
+    "buffer_capacity": 20000,
+    "target_update_freq": 200,
+    "min_replay_before_learn": 256,
+    "grad_clip_norm": 5.0,
+    "weight_decay": 1e-05,
+    "lr_min": 0.0001,
+    "tau": 0.0,
+    "model_version": "cloudload-dqn-v3"
+  },
+  "args": {
+    "episodes": 120,
+    "steps_per_episode": 50,
+    "settle_seconds": 0.6,
+    "val_every": 8,
+    "patience": 5,
+    "min_episodes": 48,
+    "val_episodes": 8,
+    "randomize": 0.25,
+    "bg_max_rps": 6.0,
+    "workers": 4,
+    "augment": 3,
+    "explore_fraction": 0.5,
+    "gamma": null,
+    "lr": null,
+    "gap_tolerance": 0.15,
+    "save_every": 10,
+    "model_path": "/home/claude/proj/cloud-load-balancer/dqn/../models/dqn_model.pt",
+    "log_dir": "/home/claude/proj/cloud-load-balancer/dqn/../logs",
+    "resume": false,
+    "seed": 42,
+    "quick": false
+  },
+  "best_val_metrics": {
+    "score_in_distribution": 1.0766273916543154,
+    "score_heldout_families": 1.1792469008114606,
+    "score": 1.1022822689436018,
+    "success_rate": 0.9875,
+    "avg_response_ms": 44.7477714274919,
+    "p95_latency_ms": 95.86270756874447,
+    "bad_routing_rate": 0.07,
+    "per_mode": {
+      "slow_plus_overload": 1.1988,
+      "three_degraded": 1.1597,
+      "flapping": 1.1292,
+      "failure_then_recovery": 1.0761,
+      "mixed_dynamic": 0.9641,
+      "high_latency_one": 1.1916,
+      "uniform_high": 0.9225,
+      "uniform_low": 1.1763
+    }
+  }
+}

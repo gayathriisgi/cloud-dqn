@@ -1,0 +1,55 @@
+# monitoring/prometheus/prometheus.yml
+# Scrape targets use Docker Compose service DNS names, matching
+# docker-compose.yml exactly. If you rename a service there, update
+# the corresponding target here too.
+
+global:
+  scrape_interval: 5s
+  evaluation_interval: 5s
+
+scrape_configs:
+  - job_name: "backend_servers"
+    metrics_path: /prometheus
+    static_configs:
+      - targets:
+          - "server1:5000"
+          - "server2:5000"
+          - "server3:5000"
+          - "server4:5000"
+        labels:
+          component: "backend"
+
+  - job_name: "round_robin"
+    static_configs:
+      - targets: ["round-robin:9000"]
+        labels:
+          component: "load_balancer"
+          algorithm: "round_robin"
+
+  - job_name: "least_connections"
+    static_configs:
+      - targets: ["least-connections:9001"]
+        labels:
+          component: "load_balancer"
+          algorithm: "least_connections"
+
+  - job_name: "aco"
+    static_configs:
+      - targets: ["aco-balancer:9002"]
+        labels:
+          component: "load_balancer"
+          algorithm: "aco"
+
+  - job_name: "dqn"
+    static_configs:
+      - targets: ["dqn-balancer:9003"]
+        labels:
+          component: "load_balancer"
+          algorithm: "dqn"
+
+  - job_name: "mycamu"
+    metrics_path: /metrics
+    static_configs:
+      - targets: ["mycamu:8080"]
+        labels:
+          component: "frontend"

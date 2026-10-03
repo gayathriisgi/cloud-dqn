@@ -1,0 +1,570 @@
+[
+  {
+    "scenario": "low_traffic",
+    "check": "success_rate",
+    "description": "DQN success rate >= 95%",
+    "passed": true,
+    "measured": 1.0,
+    "threshold": 0.95
+  },
+  {
+    "scenario": "low_traffic",
+    "check": "p95_latency",
+    "description": "DQN p95 latency <= 375 ms",
+    "passed": true,
+    "measured": 53.9,
+    "threshold": 375.0
+  },
+  {
+    "scenario": "low_traffic",
+    "check": "composite_vs_baselines",
+    "description": "DQN composite score >= best baseline - 1.0 pts (statistical tie with Round Robin: latency p=0.07, success-rate p=1.00)",
+    "passed": true,
+    "measured": 93.31,
+    "threshold": 98.87
+  },
+  {
+    "scenario": "normal_traffic",
+    "check": "success_rate",
+    "description": "DQN success rate >= 95%",
+    "passed": true,
+    "measured": 0.985,
+    "threshold": 0.95
+  },
+  {
+    "scenario": "normal_traffic",
+    "check": "p95_latency",
+    "description": "DQN p95 latency <= 375 ms",
+    "passed": true,
+    "measured": 89.6,
+    "threshold": 375.0
+  },
+  {
+    "scenario": "normal_traffic",
+    "check": "composite_vs_baselines",
+    "description": "DQN composite score >= best baseline - 1.0 pts",
+    "passed": false,
+    "measured": 95.13,
+    "threshold": 97.8
+  },
+  {
+    "scenario": "high_traffic",
+    "check": "success_rate",
+    "description": "DQN success rate >= 95%",
+    "passed": true,
+    "measured": 0.995,
+    "threshold": 0.95
+  },
+  {
+    "scenario": "high_traffic",
+    "check": "p95_latency",
+    "description": "DQN p95 latency <= 375 ms",
+    "passed": true,
+    "measured": 39.4,
+    "threshold": 375.0
+  },
+  {
+    "scenario": "high_traffic",
+    "check": "composite_vs_baselines",
+    "description": "DQN composite score >= best baseline - 1.0 pts",
+    "passed": true,
+    "measured": 98.82,
+    "threshold": 97.73
+  },
+  {
+    "scenario": "spike_traffic",
+    "check": "success_rate",
+    "description": "DQN success rate >= 95%",
+    "passed": true,
+    "measured": 0.9852,
+    "threshold": 0.95
+  },
+  {
+    "scenario": "spike_traffic",
+    "check": "p95_latency",
+    "description": "DQN p95 latency <= 375 ms",
+    "passed": true,
+    "measured": 61.4,
+    "threshold": 375.0
+  },
+  {
+    "scenario": "spike_traffic",
+    "check": "composite_vs_baselines",
+    "description": "DQN composite score >= best baseline - 1.0 pts",
+    "passed": false,
+    "measured": 91.76,
+    "threshold": 98.7
+  },
+  {
+    "scenario": "burst_traffic",
+    "check": "success_rate",
+    "description": "DQN success rate >= 95%",
+    "passed": true,
+    "measured": 0.9823,
+    "threshold": 0.95
+  },
+  {
+    "scenario": "burst_traffic",
+    "check": "p95_latency",
+    "description": "DQN p95 latency <= 375 ms",
+    "passed": true,
+    "measured": 100.4,
+    "threshold": 375.0
+  },
+  {
+    "scenario": "burst_traffic",
+    "check": "composite_vs_baselines",
+    "description": "DQN composite score >= best baseline - 1.0 pts",
+    "passed": true,
+    "measured": 97.49,
+    "threshold": 97.44
+  },
+  {
+    "scenario": "ramp_up",
+    "check": "success_rate",
+    "description": "DQN success rate >= 95%",
+    "passed": true,
+    "measured": 0.9879,
+    "threshold": 0.95
+  },
+  {
+    "scenario": "ramp_up",
+    "check": "p95_latency",
+    "description": "DQN p95 latency <= 375 ms",
+    "passed": true,
+    "measured": 46.1,
+    "threshold": 375.0
+  },
+  {
+    "scenario": "ramp_up",
+    "check": "composite_vs_baselines",
+    "description": "DQN composite score >= best baseline - 1.0 pts",
+    "passed": false,
+    "measured": 94.76,
+    "threshold": 98.53
+  },
+  {
+    "scenario": "flash_crowd",
+    "check": "success_rate",
+    "description": "DQN success rate >= 95%",
+    "passed": true,
+    "measured": 0.9907,
+    "threshold": 0.95
+  },
+  {
+    "scenario": "flash_crowd",
+    "check": "p95_latency",
+    "description": "DQN p95 latency <= 375 ms",
+    "passed": true,
+    "measured": 48.9,
+    "threshold": 375.0
+  },
+  {
+    "scenario": "flash_crowd",
+    "check": "composite_vs_baselines",
+    "description": "DQN composite score >= best baseline - 1.0 pts",
+    "passed": false,
+    "measured": 96.97,
+    "threshold": 98.55
+  },
+  {
+    "scenario": "slow_server",
+    "check": "success_rate",
+    "description": "DQN success rate >= 90%",
+    "passed": true,
+    "measured": 0.995,
+    "threshold": 0.9
+  },
+  {
+    "scenario": "slow_server",
+    "check": "p95_latency",
+    "description": "DQN p95 latency <= 625 ms",
+    "passed": true,
+    "measured": 44.8,
+    "threshold": 625.0
+  },
+  {
+    "scenario": "slow_server",
+    "check": "routing_accuracy",
+    "description": "DQN avoids degraded servers >= 85% of the time",
+    "passed": true,
+    "measured": 0.98,
+    "threshold": 0.85
+  },
+  {
+    "scenario": "slow_server",
+    "check": "composite_vs_baselines",
+    "description": "DQN composite score >= best baseline - 1.0 pts",
+    "passed": true,
+    "measured": 98.8,
+    "threshold": 83.27
+  },
+  {
+    "scenario": "single_overload",
+    "check": "success_rate",
+    "description": "DQN success rate >= 90%",
+    "passed": true,
+    "measured": 0.98,
+    "threshold": 0.9
+  },
+  {
+    "scenario": "single_overload",
+    "check": "p95_latency",
+    "description": "DQN p95 latency <= 625 ms",
+    "passed": true,
+    "measured": 95.9,
+    "threshold": 625.0
+  },
+  {
+    "scenario": "single_overload",
+    "check": "routing_accuracy",
+    "description": "DQN avoids degraded servers >= 85% of the time",
+    "passed": true,
+    "measured": 1.0,
+    "threshold": 0.85
+  },
+  {
+    "scenario": "single_overload",
+    "check": "composite_vs_baselines",
+    "description": "DQN composite score >= best baseline - 1.0 pts",
+    "passed": true,
+    "measured": 98.8,
+    "threshold": 88.48
+  },
+  {
+    "scenario": "double_overload",
+    "check": "success_rate",
+    "description": "DQN success rate >= 90%",
+    "passed": true,
+    "measured": 0.975,
+    "threshold": 0.9
+  },
+  {
+    "scenario": "double_overload",
+    "check": "p95_latency",
+    "description": "DQN p95 latency <= 625 ms",
+    "passed": true,
+    "measured": 113.4,
+    "threshold": 625.0
+  },
+  {
+    "scenario": "double_overload",
+    "check": "routing_accuracy",
+    "description": "DQN avoids degraded servers >= 85% of the time",
+    "passed": true,
+    "measured": 1.0,
+    "threshold": 0.85
+  },
+  {
+    "scenario": "double_overload",
+    "check": "composite_vs_baselines",
+    "description": "DQN composite score >= best baseline - 1.0 pts",
+    "passed": true,
+    "measured": 98.5,
+    "threshold": 72.71
+  },
+  {
+    "scenario": "cpu_memory_pressure",
+    "check": "success_rate",
+    "description": "DQN success rate >= 90%",
+    "passed": true,
+    "measured": 0.98,
+    "threshold": 0.9
+  },
+  {
+    "scenario": "cpu_memory_pressure",
+    "check": "p95_latency",
+    "description": "DQN p95 latency <= 625 ms",
+    "passed": true,
+    "measured": 165.9,
+    "threshold": 625.0
+  },
+  {
+    "scenario": "cpu_memory_pressure",
+    "check": "routing_accuracy",
+    "description": "DQN avoids degraded servers >= 85% of the time",
+    "passed": false,
+    "measured": 0.64,
+    "threshold": 0.85
+  },
+  {
+    "scenario": "cpu_memory_pressure",
+    "check": "composite_vs_baselines",
+    "description": "DQN composite score >= best baseline - 1.0 pts",
+    "passed": false,
+    "measured": 89.05,
+    "threshold": 89.8
+  },
+  {
+    "scenario": "queue_buildup_high_traffic",
+    "check": "success_rate",
+    "description": "DQN success rate >= 90%",
+    "passed": true,
+    "measured": 0.9875,
+    "threshold": 0.9
+  },
+  {
+    "scenario": "queue_buildup_high_traffic",
+    "check": "p95_latency",
+    "description": "DQN p95 latency <= 625 ms",
+    "passed": true,
+    "measured": 72.1,
+    "threshold": 625.0
+  },
+  {
+    "scenario": "queue_buildup_high_traffic",
+    "check": "routing_accuracy",
+    "description": "DQN avoids degraded servers >= 85% of the time",
+    "passed": false,
+    "measured": 0.7719,
+    "threshold": 0.85
+  },
+  {
+    "scenario": "queue_buildup_high_traffic",
+    "check": "composite_vs_baselines",
+    "description": "DQN composite score >= best baseline - 1.0 pts",
+    "passed": true,
+    "measured": 94.67,
+    "threshold": 93.24
+  },
+  {
+    "scenario": "heterogeneous_servers",
+    "check": "success_rate",
+    "description": "DQN success rate >= 90%",
+    "passed": true,
+    "measured": 0.9875,
+    "threshold": 0.9
+  },
+  {
+    "scenario": "heterogeneous_servers",
+    "check": "p95_latency",
+    "description": "DQN p95 latency <= 625 ms",
+    "passed": true,
+    "measured": 125.7,
+    "threshold": 625.0
+  },
+  {
+    "scenario": "heterogeneous_servers",
+    "check": "routing_accuracy",
+    "description": "DQN avoids degraded servers >= 85% of the time",
+    "passed": true,
+    "measured": 0.9667,
+    "threshold": 0.85
+  },
+  {
+    "scenario": "heterogeneous_servers",
+    "check": "composite_vs_baselines",
+    "description": "DQN composite score >= best baseline - 1.0 pts",
+    "passed": true,
+    "measured": 98.58,
+    "threshold": 93.76
+  },
+  {
+    "scenario": "spike_during_overload",
+    "check": "success_rate",
+    "description": "DQN success rate >= 90%",
+    "passed": true,
+    "measured": 0.99,
+    "threshold": 0.9
+  },
+  {
+    "scenario": "spike_during_overload",
+    "check": "p95_latency",
+    "description": "DQN p95 latency <= 625 ms",
+    "passed": true,
+    "measured": 229.6,
+    "threshold": 625.0
+  },
+  {
+    "scenario": "spike_during_overload",
+    "check": "routing_accuracy",
+    "description": "DQN avoids degraded servers >= 85% of the time",
+    "passed": true,
+    "measured": 1.0,
+    "threshold": 0.85
+  },
+  {
+    "scenario": "spike_during_overload",
+    "check": "composite_vs_baselines",
+    "description": "DQN composite score >= best baseline - 1.0 pts",
+    "passed": true,
+    "measured": 98.02,
+    "threshold": 93.21
+  },
+  {
+    "scenario": "hard_failure",
+    "check": "success_rate",
+    "description": "DQN success rate >= 90%",
+    "passed": true,
+    "measured": 0.99,
+    "threshold": 0.9
+  },
+  {
+    "scenario": "hard_failure",
+    "check": "p95_latency",
+    "description": "DQN p95 latency <= 625 ms",
+    "passed": true,
+    "measured": 46.1,
+    "threshold": 625.0
+  },
+  {
+    "scenario": "hard_failure",
+    "check": "routing_accuracy",
+    "description": "DQN avoids degraded servers >= 85% of the time",
+    "passed": true,
+    "measured": 1.0,
+    "threshold": 0.85
+  },
+  {
+    "scenario": "hard_failure",
+    "check": "composite_vs_baselines",
+    "description": "DQN composite score >= best baseline - 1.0 pts",
+    "passed": true,
+    "measured": 97.04,
+    "threshold": 85.42
+  },
+  {
+    "scenario": "failure_and_recovery",
+    "check": "success_rate",
+    "description": "DQN success rate >= 90%",
+    "passed": true,
+    "measured": 0.9925,
+    "threshold": 0.9
+  },
+  {
+    "scenario": "failure_and_recovery",
+    "check": "p95_latency",
+    "description": "DQN p95 latency <= 625 ms",
+    "passed": true,
+    "measured": 45.2,
+    "threshold": 625.0
+  },
+  {
+    "scenario": "failure_and_recovery",
+    "check": "routing_accuracy",
+    "description": "DQN avoids degraded servers >= 85% of the time",
+    "passed": true,
+    "measured": 1.0,
+    "threshold": 0.85
+  },
+  {
+    "scenario": "failure_and_recovery",
+    "check": "composite_vs_baselines",
+    "description": "DQN composite score >= best baseline - 1.0 pts",
+    "passed": true,
+    "measured": 96.79,
+    "threshold": 86.83
+  },
+  {
+    "scenario": "flapping_server",
+    "check": "success_rate",
+    "description": "DQN success rate >= 90%",
+    "passed": true,
+    "measured": 0.9958,
+    "threshold": 0.9
+  },
+  {
+    "scenario": "flapping_server",
+    "check": "p95_latency",
+    "description": "DQN p95 latency <= 625 ms",
+    "passed": true,
+    "measured": 108.3,
+    "threshold": 625.0
+  },
+  {
+    "scenario": "flapping_server",
+    "check": "routing_accuracy",
+    "description": "DQN avoids degraded servers >= 85% of the time",
+    "passed": true,
+    "measured": 1.0,
+    "threshold": 0.85
+  },
+  {
+    "scenario": "flapping_server",
+    "check": "composite_vs_baselines",
+    "description": "DQN composite score >= best baseline - 1.0 pts",
+    "passed": true,
+    "measured": 99.53,
+    "threshold": 96.35
+  },
+  {
+    "scenario": "cascading_degradation",
+    "check": "success_rate",
+    "description": "DQN success rate >= 90%",
+    "passed": true,
+    "measured": 0.9967,
+    "threshold": 0.9
+  },
+  {
+    "scenario": "cascading_degradation",
+    "check": "p95_latency",
+    "description": "DQN p95 latency <= 625 ms",
+    "passed": true,
+    "measured": 337.6,
+    "threshold": 625.0
+  },
+  {
+    "scenario": "cascading_degradation",
+    "check": "routing_accuracy",
+    "description": "DQN avoids degraded servers >= 85% of the time",
+    "passed": false,
+    "measured": 0.7967,
+    "threshold": 0.85
+  },
+  {
+    "scenario": "cascading_degradation",
+    "check": "composite_vs_baselines",
+    "description": "DQN composite score >= best baseline - 1.0 pts",
+    "passed": true,
+    "measured": 93.57,
+    "threshold": 73.41
+  },
+  {
+    "scenario": "overload_migration",
+    "check": "success_rate",
+    "description": "DQN success rate >= 90%",
+    "passed": true,
+    "measured": 0.9958,
+    "threshold": 0.9
+  },
+  {
+    "scenario": "overload_migration",
+    "check": "p95_latency",
+    "description": "DQN p95 latency <= 625 ms",
+    "passed": true,
+    "measured": 115.9,
+    "threshold": 625.0
+  },
+  {
+    "scenario": "overload_migration",
+    "check": "routing_accuracy",
+    "description": "DQN avoids degraded servers >= 85% of the time",
+    "passed": true,
+    "measured": 1.0,
+    "threshold": 0.85
+  },
+  {
+    "scenario": "overload_migration",
+    "check": "composite_vs_baselines",
+    "description": "DQN composite score >= best baseline - 1.0 pts",
+    "passed": true,
+    "measured": 99.75,
+    "threshold": 91.7
+  },
+  {
+    "scenario": "policy_probes",
+    "check": "probe_beats_baselines",
+    "description": "DQN probe decision accuracy > every reference policy (RR / Random / LC)",
+    "passed": true,
+    "measured": 0.78,
+    "threshold": 0.715
+  },
+  {
+    "scenario": "policy_probes",
+    "check": "probe_accuracy",
+    "description": "DQN decision accuracy on synthetic incident states >= 90%",
+    "passed": false,
+    "measured": 0.78,
+    "threshold": 0.9
+  }
+]

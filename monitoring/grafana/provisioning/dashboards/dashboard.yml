@@ -1,0 +1,15 @@
+# Auto-provisions the dashboard JSON in monitoring/grafana/dashboards/
+# so it appears in Grafana immediately on first login, with no manual
+# import step.
+apiVersion: 1
+
+providers:
+  - name: "cloudload"
+    orgId: 1
+    folder: "Cloud Load Balancer"
+    type: file
+    disableDeletion: false
+    updateIntervalSeconds: 30
+    allowUiUpdates: true
+    options:
+      path: /var/lib/grafana/dashboards

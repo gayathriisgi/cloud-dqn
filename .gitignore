@@ -1,0 +1,25 @@
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+env/
+.idea/
+.vscode/
+.env
+
+# Trained models & generated artifacts (regenerate via dqn/train.py etc.)
+models/*.pt
+!models/.gitkeep
+
+logs/*.csv
+logs/*.json
+!logs/.gitkeep
+
+results/*.png
+results/*.json
+!results/.gitkeep
+
+# MyCamu local SQLite data (Docker uses the mycamu_data volume)
+mycamu/data/
+*.pt.tmp

@@ -1,0 +1,327 @@
+# ---------------------------------------------------------------------
+# Cloud Load Balancer - DQN vs Round Robin / Least Connections / ACO
+# ---------------------------------------------------------------------
+# Every backend server is reached through Docker's internal service DNS
+# (http://server1:5000 .. http://server4:5000) via the SERVER_URLS
+# environment variable - never localhost - so this compose file works
+# identically on Linux, macOS and Windows (Docker Desktop / WSL2).
+# ---------------------------------------------------------------------
+
+x-server-common: &server-common
+  build:
+    context: .
+    dockerfile: servers/Dockerfile
+  networks:
+    - lb_network
+  environment:
+    - PORT=5000
+    - LOG_LEVEL=${LOG_LEVEL:-INFO}
+    - MEMORY_CAP_MB=${MEMORY_CAP_MB:-512}
+  healthcheck:
+    test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:5000/health', timeout=3)"]
+    interval: 10s
+    timeout: 5s
+    retries: 5
+    start_period: 5s
+  restart: unless-stopped
+
+x-balancer-env: &balancer-env
+  SERVER_URLS: "http://server1:5000,http://server2:5000,http://server3:5000,http://server4:5000"
+  REQUEST_TIMEOUT: "${REQUEST_TIMEOUT:-5}"
+  METRICS_TIMEOUT: "${METRICS_TIMEOUT:-1.5}"
+  LOG_LEVEL: "${LOG_LEVEL:-INFO}"
+
+services:
+  # -------------------------------------------------------------
+  # Backend Flask servers
+  # -------------------------------------------------------------
+  server1:
+    <<: *server-common
+    container_name: cloudload-server1
+    environment:
+      - SERVER_ID=1
+      - PORT=5000
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      - MEMORY_CAP_MB=${MEMORY_CAP_MB:-512}
+    ports:
+      - "5001:5000"
+
+  server2:
+    <<: *server-common
+    container_name: cloudload-server2
+    environment:
+      - SERVER_ID=2
+      - PORT=5000
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      - MEMORY_CAP_MB=${MEMORY_CAP_MB:-512}
+    ports:
+      - "5002:5000"
+
+  server3:
+    <<: *server-common
+    container_name: cloudload-server3
+    environment:
+      - SERVER_ID=3
+      - PORT=5000
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      - MEMORY_CAP_MB=${MEMORY_CAP_MB:-512}
+    ports:
+      - "5003:5000"
+
+  server4:
+    <<: *server-common
+    container_name: cloudload-server4
+    environment:
+      - SERVER_ID=4
+      - PORT=5000
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      - MEMORY_CAP_MB=${MEMORY_CAP_MB:-512}
+    ports:
+      - "5004:5000"
+
+  # -------------------------------------------------------------
+  # Static baseline load balancers
+  # -------------------------------------------------------------
+  round-robin:
+    build:
+      context: .
+      dockerfile: load_balancer/Dockerfile
+    container_name: cloudload-round-robin
+    command: ["python", "load_balancer/round_robin.py"]
+    environment:
+      <<: *balancer-env
+      RR_PORT: "8000"
+      RR_METRICS_PORT: "9000"
+    ports:
+      - "8000:8000"
+      - "9000:9000"
+    networks:
+      - lb_network
+    depends_on:
+      server1: { condition: service_healthy }
+      server2: { condition: service_healthy }
+      server3: { condition: service_healthy }
+      server4: { condition: service_healthy }
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health', timeout=3)"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+    restart: unless-stopped
+
+  least-connections:
+    build:
+      context: .
+      dockerfile: load_balancer/Dockerfile
+    container_name: cloudload-least-connections
+    command: ["python", "load_balancer/least_connections.py"]
+    environment:
+      <<: *balancer-env
+      LC_PORT: "8001"
+      LC_METRICS_PORT: "9001"
+    ports:
+      - "8001:8001"
+      - "9001:9001"
+    networks:
+      - lb_network
+    depends_on:
+      server1: { condition: service_healthy }
+      server2: { condition: service_healthy }
+      server3: { condition: service_healthy }
+      server4: { condition: service_healthy }
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8001/health', timeout=3)"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+    restart: unless-stopped
+
+  aco-balancer:
+    build:
+      context: .
+      dockerfile: load_balancer/Dockerfile
+    container_name: cloudload-aco-balancer
+    command: ["python", "load_balancer/aco_balancer.py"]
+    environment:
+      <<: *balancer-env
+      ACO_PORT: "8002"
+      ACO_METRICS_PORT: "9002"
+      ACO_EVAPORATION_RATE: "${ACO_EVAPORATION_RATE:-0.1}"
+    ports:
+      - "8002:8002"
+      - "9002:9002"
+    networks:
+      - lb_network
+    depends_on:
+      server1: { condition: service_healthy }
+      server2: { condition: service_healthy }
+      server3: { condition: service_healthy }
+      server4: { condition: service_healthy }
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8002/health', timeout=3)"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+    restart: unless-stopped
+
+  # -------------------------------------------------------------
+  # DQN load balancer
+  # -------------------------------------------------------------
+  dqn-balancer:
+    build:
+      context: .
+      dockerfile: load_balancer/Dockerfile
+    container_name: cloudload-dqn-balancer
+    command: ["python", "load_balancer/dqn_balancer.py"]
+    environment:
+      <<: *balancer-env
+      DQN_PORT: "8003"
+      DQN_METRICS_PORT: "9003"
+      DQN_MODEL_PATH: "/app/models/dqn_model.pt"
+      DQN_INFERENCE_EPSILON: "${DQN_INFERENCE_EPSILON:-0.0}"
+      DQN_ONLINE_LEARNING: "${DQN_ONLINE_LEARNING:-false}"
+      DQN_TIE_MARGIN: "${DQN_TIE_MARGIN:-0.15}"
+      DQN_TORCH_THREADS: "${DQN_TORCH_THREADS:-1}"
+    ports:
+      - "8003:8003"
+      - "9003:9003"
+    volumes:
+      - ./models:/app/models
+    networks:
+      - lb_network
+    depends_on:
+      server1: { condition: service_healthy }
+      server2: { condition: service_healthy }
+      server3: { condition: service_healthy }
+      server4: { condition: service_healthy }
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8003/health', timeout=3)"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+    restart: unless-stopped
+
+  # -------------------------------------------------------------
+  # TCE MyCamu - student portal + live load-balancing demo UI
+  # -------------------------------------------------------------
+  # Talks to every balancer/server over the compose network. Inside the
+  # network the backends listen on :5000 (5001-5004 are HOST mappings
+  # only). The SQLite DB lives on the named volume `mycamu_data`, so
+  # students/registrations survive `docker compose restart/down/up`
+  # (only `docker compose down -v` deletes it).
+  mycamu:
+    build:
+      context: ./mycamu
+    container_name: cloudload-mycamu
+    ports:
+      - "8080:8080"
+    environment:
+      ROUND_ROBIN_URL: http://round-robin:8000
+      LEAST_CONNECTIONS_URL: http://least-connections:8001
+      ACO_URL: http://aco-balancer:8002
+      DQN_URL: http://dqn-balancer:8003
+      SERVER1_URL: http://server1:5000
+      SERVER2_URL: http://server2:5000
+      SERVER3_URL: http://server3:5000
+      SERVER4_URL: http://server4:5000
+      MYCAMU_DATA_DIR: /app/data
+      MYCAMU_DB_PATH: /app/data/mycamu.db
+      MYCAMU_DEFAULT_ALGORITHM: "${MYCAMU_DEFAULT_ALGORITHM:-dqn}"
+    volumes:
+      - mycamu_data:/app/data
+    networks:
+      - lb_network
+    depends_on:
+      round-robin: { condition: service_healthy }
+      least-connections: { condition: service_healthy }
+      aco-balancer: { condition: service_healthy }
+      dqn-balancer: { condition: service_healthy }
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8080/api/auth/demo-accounts', timeout=3)"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    restart: unless-stopped
+
+  # -------------------------------------------------------------
+  # Traffic generator (optional; run on-demand, not part of `up -d`)
+  # -------------------------------------------------------------
+  traffic-generator:
+    build:
+      context: .
+      dockerfile: load_balancer/Dockerfile
+    container_name: cloudload-traffic-generator
+    profiles: ["tools"]
+    command:
+      - python
+      - traffic/traffic_generator.py
+      - --target
+      - "http://dqn-balancer:8003"
+      - --pattern
+      - "${TRAFFIC_PATTERN:-normal}"
+      - --duration
+      - "${TRAFFIC_DURATION:-60}"
+      - --rate
+      - "${TRAFFIC_RATE:-10}"
+      - --output
+      - "/app/logs/traffic_run.csv"
+    volumes:
+      - ./logs:/app/logs
+    networks:
+      - lb_network
+    depends_on:
+      - dqn-balancer
+
+  # -------------------------------------------------------------
+  # Monitoring
+  # -------------------------------------------------------------
+  prometheus:
+    image: prom/prometheus:v2.55.1
+    container_name: cloudload-prometheus
+    volumes:
+      - ./monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    ports:
+      - "9090:9090"
+    networks:
+      - lb_network
+    depends_on:
+      - round-robin
+      - least-connections
+      - aco-balancer
+      - dqn-balancer
+      - mycamu
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:11.2.0
+    container_name: cloudload-grafana
+    environment:
+      - GF_SECURITY_ADMIN_USER=${GRAFANA_ADMIN_USER:-admin}
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_ADMIN_PASSWORD:-admin}
+      - GF_USERS_ALLOW_SIGN_UP=false
+    volumes:
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./monitoring/grafana/dashboards:/var/lib/grafana/dashboards:ro
+      - grafana_data:/var/lib/grafana
+    ports:
+      - "3000:3000"
+    networks:
+      - lb_network
+    depends_on:
+      - prometheus
+    restart: unless-stopped
+
+networks:
+  lb_network:
+    driver: bridge
+
+volumes:
+  prometheus_data:
+  grafana_data:
+  mycamu_data:

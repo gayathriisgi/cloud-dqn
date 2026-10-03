@@ -1,0 +1,493 @@
+{
+  "reference_policies": {
+    "round_robin": {
+      "score_in_distribution": 0.9629600401228502,
+      "score_heldout_families": 0.8441746866099562,
+      "score": 0.9332637017446266,
+      "success_rate": 0.9524999999999999,
+      "avg_response_ms": 92.6961880275087,
+      "p95_latency_ms": 220.6331665750099,
+      "bad_routing_rate": 0.2825,
+      "per_mode": {
+        "slow_plus_overload": 0.8449,
+        "three_degraded": 0.8434,
+        "flapping": 1.0489,
+        "failure_then_recovery": 0.5719,
+        "mixed_dynamic": 0.7293,
+        "high_latency_one": 1.1497,
+        "uniform_high": 0.999,
+        "uniform_low": 1.279
+      }
+    },
+    "random": {
+      "score_in_distribution": 0.9838708226357603,
+      "score_heldout_families": 0.6473569111158242,
+      "score": 0.8997423447557762,
+      "success_rate": 0.9524999999999999,
+      "avg_response_ms": 91.39659667000501,
+      "p95_latency_ms": 220.57473722505563,
+      "bad_routing_rate": 0.27,
+      "per_mode": {
+        "slow_plus_overload": 0.9135,
+        "three_degraded": 0.3812,
+        "flapping": 1.2005,
+        "failure_then_recovery": 0.6167,
+        "mixed_dynamic": 0.6965,
+        "high_latency_one": 1.121,
+        "uniform_high": 1.0044,
+        "uniform_low": 1.2642
+      }
+    },
+    "least_active": {
+      "score_in_distribution": 1.0678498094877,
+      "score_heldout_families": 1.0370882645465018,
+      "score": 1.0601594232524005,
+      "success_rate": 0.9824999999999999,
+      "avg_response_ms": 60.48203168249529,
+      "p95_latency_ms": 163.77644111879306,
+      "bad_routing_rate": 0.15000000000000002,
+      "per_mode": {
+        "slow_plus_overload": 1.0893,
+        "three_degraded": 0.9849,
+        "flapping": 1.0486,
+        "failure_then_recovery": 1.0251,
+        "mixed_dynamic": 0.9454,
+        "high_latency_one": 1.1548,
+        "uniform_high": 0.9445,
+        "uniform_low": 1.2887
+      }
+    }
+  },
+  "evaluations": [
+    {
+      "episode": 8,
+      "val": {
+        "score_in_distribution": 1.0699498266085399,
+        "score_heldout_families": 1.140586715101044,
+        "score": 1.0876090487316659,
+        "success_rate": 0.98,
+        "avg_response_ms": 45.59169918500061,
+        "p95_latency_ms": 92.19742060006409,
+        "bad_routing_rate": 0.025,
+        "per_mode": {
+          "slow_plus_overload": 1.1165,
+          "three_degraded": 1.1647,
+          "flapping": 1.0669,
+          "failure_then_recovery": 1.0393,
+          "mixed_dynamic": 0.9601,
+          "high_latency_one": 1.1487,
+          "uniform_high": 0.9595,
+          "uniform_low": 1.2452
+        }
+      },
+      "train_probe": {
+        "score_in_distribution": 1.086771907840137,
+        "score_heldout_families": null,
+        "score": 1.086771907840137,
+        "success_rate": 0.98,
+        "avg_response_ms": 63.31364724666855,
+        "p95_latency_ms": 136.56217592491276,
+        "bad_routing_rate": 0.09666666666666666,
+        "per_mode": {
+          "flapping": 1.2129,
+          "failure_then_recovery": 1.12,
+          "mixed_dynamic": 1.0572,
+          "high_latency_one": 1.1458,
+          "uniform_high": 0.7363,
+          "uniform_low": 1.2484
+        }
+      },
+      "train_td_loss": 0.10437848418951035,
+      "val_td_loss": 0.0669993981719017,
+      "epsilon": 0.87365,
+      "learning_rate": 0.0009901664203302125
+    },
+    {
+      "episode": 16,
+      "val": {
+        "score_in_distribution": 1.0750496203556232,
+        "score_heldout_families": 1.064911867373557,
+        "score": 1.0725151821101067,
+        "success_rate": 0.9775,
+        "avg_response_ms": 64.28558201749752,
+        "p95_latency_ms": 174.07678011874165,
+        "bad_routing_rate": 0.15000000000000002,
+        "per_mode": {
+          "slow_plus_overload": 1.1633,
+          "three_degraded": 0.9665,
+          "flapping": 1.0924,
+          "failure_then_recovery": 1.0529,
+          "mixed_dynamic": 0.9613,
+          "high_latency_one": 1.152,
+          "uniform_high": 0.9271,
+          "uniform_low": 1.2646
+        }
+      },
+      "train_probe": {
+        "score_in_distribution": 1.1356712732299241,
+        "score_heldout_families": null,
+        "score": 1.1356712732299241,
+        "success_rate": 0.9899999999999999,
+        "avg_response_ms": 45.02340756000649,
+        "p95_latency_ms": 128.93182857498758,
+        "bad_routing_rate": 0.060000000000000005,
+        "per_mode": {
+          "flapping": 1.116,
+          "failure_then_recovery": 1.1498,
+          "mixed_dynamic": 1.1624,
+          "high_latency_one": 1.228,
+          "uniform_high": 0.9208,
+          "uniform_low": 1.2372
+        }
+      },
+      "train_td_loss": 0.09345673769712448,
+      "val_td_loss": 0.07588507980108261,
+      "epsilon": 0.7469833333333333,
+      "learning_rate": 0.0009610954559391703
+    },
+    {
+      "episode": 24,
+      "val": {
+        "score_in_distribution": 1.0956446710950112,
+        "score_heldout_families": 1.0484651515018555,
+        "score": 1.0838497911967222,
+        "success_rate": 0.98,
+        "avg_response_ms": 54.422235502496505,
+        "p95_latency_ms": 116.51977173128499,
+        "bad_routing_rate": 0.1575,
+        "per_mode": {
+          "slow_plus_overload": 1.1207,
+          "three_degraded": 0.9762,
+          "flapping": 1.1785,
+          "failure_then_recovery": 1.1528,
+          "mixed_dynamic": 0.9603,
+          "high_latency_one": 1.1854,
+          "uniform_high": 0.9046,
+          "uniform_low": 1.1922
+        }
+      },
+      "train_probe": {
+        "score_in_distribution": 1.1274106243086122,
+        "score_heldout_families": null,
+        "score": 1.1274106243086122,
+        "success_rate": 0.9833333333333334,
+        "avg_response_ms": 41.81510773999889,
+        "p95_latency_ms": 95.34653910828108,
+        "bad_routing_rate": 0.02666666666666667,
+        "per_mode": {
+          "flapping": 1.1086,
+          "failure_then_recovery": 1.1018,
+          "mixed_dynamic": 1.1321,
+          "high_latency_one": 1.1696,
+          "uniform_high": 1.0897,
+          "uniform_low": 1.1626
+        }
+      },
+      "train_td_loss": 0.11143961548805237,
+      "val_td_loss": 0.07094547897577286,
+      "epsilon": 0.6203166666666666,
+      "learning_rate": 0.0009140576474687263
+    },
+    {
+      "episode": 32,
+      "val": {
+        "score_in_distribution": 1.0164750835661653,
+        "score_heldout_families": 1.083188357089008,
+        "score": 1.033153401946876,
+        "success_rate": 0.9775,
+        "avg_response_ms": 63.37802516249894,
+        "p95_latency_ms": 158.51712376254454,
+        "bad_routing_rate": 0.08,
+        "per_mode": {
+          "slow_plus_overload": 1.1735,
+          "three_degraded": 0.9929,
+          "flapping": 1.1351,
+          "failure_then_recovery": 1.037,
+          "mixed_dynamic": 0.7801,
+          "high_latency_one": 1.1337,
+          "uniform_high": 0.7824,
+          "uniform_low": 1.2306
+        }
+      },
+      "train_probe": {
+        "score_in_distribution": 1.1234469673900718,
+        "score_heldout_families": null,
+        "score": 1.1234469673900718,
+        "success_rate": 0.9933333333333333,
+        "avg_response_ms": 48.545565153331154,
+        "p95_latency_ms": 93.98728546675936,
+        "bad_routing_rate": 0.043333333333333335,
+        "per_mode": {
+          "flapping": 1.195,
+          "failure_then_recovery": 1.14,
+          "mixed_dynamic": 1.1096,
+          "high_latency_one": 1.2281,
+          "uniform_high": 0.8538,
+          "uniform_low": 1.2143
+        }
+      },
+      "train_td_loss": 0.08022467792034149,
+      "val_td_loss": 0.07514798641204834,
+      "epsilon": 0.49365000000000003,
+      "learning_rate": 0.0008511087728614862
+    },
+    {
+      "episode": 40,
+      "val": {
+        "score_in_distribution": 1.0766273916543154,
+        "score_heldout_families": 1.1792469008114606,
+        "score": 1.1022822689436018,
+        "success_rate": 0.9875,
+        "avg_response_ms": 44.7477714274919,
+        "p95_latency_ms": 95.86270756874447,
+        "bad_routing_rate": 0.07,
+        "per_mode": {
+          "slow_plus_overload": 1.1988,
+          "three_degraded": 1.1597,
+          "flapping": 1.1292,
+          "failure_then_recovery": 1.0761,
+          "mixed_dynamic": 0.9641,
+          "high_latency_one": 1.1916,
+          "uniform_high": 0.9225,
+          "uniform_low": 1.1763
+        }
+      },
+      "train_probe": {
+        "score_in_distribution": 1.0890424715737497,
+        "score_heldout_families": null,
+        "score": 1.0890424715737497,
+        "success_rate": 0.9833333333333334,
+        "avg_response_ms": 42.06810785333346,
+        "p95_latency_ms": 91.49984330840273,
+        "bad_routing_rate": 0.03,
+        "per_mode": {
+          "flapping": 1.1272,
+          "failure_then_recovery": 1.0703,
+          "mixed_dynamic": 1.1426,
+          "high_latency_one": 1.1575,
+          "uniform_high": 0.8808,
+          "uniform_low": 1.1559
+        }
+      },
+      "train_td_loss": 0.0729958638548851,
+      "val_td_loss": 0.07143789529800415,
+      "epsilon": 0.36698333333333333,
+      "learning_rate": 0.0007750000000000001
+    },
+    {
+      "episode": 48,
+      "val": {
+        "score_in_distribution": 1.0860202092448017,
+        "score_heldout_families": 1.122655329241266,
+        "score": 1.0951789892439177,
+        "success_rate": 0.985,
+        "avg_response_ms": 47.84596632248849,
+        "p95_latency_ms": 109.92040248748934,
+        "bad_routing_rate": 0.034999999999999996,
+        "per_mode": {
+          "slow_plus_overload": 1.068,
+          "three_degraded": 1.1774,
+          "flapping": 1.1656,
+          "failure_then_recovery": 0.9763,
+          "mixed_dynamic": 1.0329,
+          "high_latency_one": 1.1807,
+          "uniform_high": 0.923,
+          "uniform_low": 1.2376
+        }
+      },
+      "train_probe": {
+        "score_in_distribution": 1.1282964531124378,
+        "score_heldout_families": null,
+        "score": 1.1282964531124378,
+        "success_rate": 0.9966666666666667,
+        "avg_response_ms": 42.07675465665943,
+        "p95_latency_ms": 88.99211540833676,
+        "bad_routing_rate": 0.03,
+        "per_mode": {
+          "flapping": 1.2109,
+          "failure_then_recovery": 1.075,
+          "mixed_dynamic": 1.121,
+          "high_latency_one": 1.148,
+          "uniform_high": 0.9727,
+          "uniform_low": 1.2421
+        }
+      },
+      "train_td_loss": 0.07696375995874405,
+      "val_td_loss": 0.0722687765955925,
+      "epsilon": 0.24031666666666673,
+      "learning_rate": 0.0006890576474687264
+    },
+    {
+      "episode": 56,
+      "val": {
+        "score_in_distribution": 1.0815039447045058,
+        "score_heldout_families": 1.1534866509760477,
+        "score": 1.0994996212723915,
+        "success_rate": 0.985,
+        "avg_response_ms": 49.367239600004496,
+        "p95_latency_ms": 95.8769969125057,
+        "bad_routing_rate": 0.0925,
+        "per_mode": {
+          "slow_plus_overload": 1.1958,
+          "three_degraded": 1.1112,
+          "flapping": 1.1543,
+          "failure_then_recovery": 1.0633,
+          "mixed_dynamic": 0.9606,
+          "high_latency_one": 1.1931,
+          "uniform_high": 1.0158,
+          "uniform_low": 1.1019
+        }
+      },
+      "train_probe": {
+        "score_in_distribution": 1.107706289279378,
+        "score_heldout_families": null,
+        "score": 1.107706289279378,
+        "success_rate": 0.9899999999999999,
+        "avg_response_ms": 37.73994241333033,
+        "p95_latency_ms": 59.92466099172589,
+        "bad_routing_rate": 0.03666666666666667,
+        "per_mode": {
+          "flapping": 1.187,
+          "failure_then_recovery": 1.1192,
+          "mixed_dynamic": 1.0921,
+          "high_latency_one": 1.1599,
+          "uniform_high": 0.9475,
+          "uniform_low": 1.1406
+        }
+      },
+      "train_td_loss": 0.0836513563990593,
+      "val_td_loss": 0.0692463368177414,
+      "epsilon": 0.11365000000000003,
+      "learning_rate": 0.0005970378084704442
+    },
+    {
+      "episode": 64,
+      "val": {
+        "score_in_distribution": 1.0608867405056375,
+        "score_heldout_families": 1.0854270110481046,
+        "score": 1.0670218081412544,
+        "success_rate": 0.985,
+        "avg_response_ms": 53.32764888999577,
+        "p95_latency_ms": 165.09704895621257,
+        "bad_routing_rate": 0.034999999999999996,
+        "per_mode": {
+          "slow_plus_overload": 1.0641,
+          "three_degraded": 1.1068,
+          "flapping": 1.1308,
+          "failure_then_recovery": 1.0504,
+          "mixed_dynamic": 0.8769,
+          "high_latency_one": 1.1287,
+          "uniform_high": 0.9605,
+          "uniform_low": 1.218
+        }
+      },
+      "train_probe": {
+        "score_in_distribution": 1.0661715844286739,
+        "score_heldout_families": null,
+        "score": 1.0661715844286739,
+        "success_rate": 0.98,
+        "avg_response_ms": 49.19959766334008,
+        "p95_latency_ms": 148.07195452499766,
+        "bad_routing_rate": 0.049999999999999996,
+        "per_mode": {
+          "flapping": 1.1557,
+          "failure_then_recovery": 1.0676,
+          "mixed_dynamic": 1.0601,
+          "high_latency_one": 1.1961,
+          "uniform_high": 0.8624,
+          "uniform_low": 1.055
+        }
+      },
+      "train_td_loss": 0.06407477706670761,
+      "val_td_loss": 0.06362695246934891,
+      "epsilon": 0.050000000000000044,
+      "learning_rate": 0.000502962191529556
+    },
+    {
+      "episode": 72,
+      "val": {
+        "score_in_distribution": 1.05280250108924,
+        "score_heldout_families": 1.1958155055520754,
+        "score": 1.088555752204949,
+        "success_rate": 0.985,
+        "avg_response_ms": 54.46226838749908,
+        "p95_latency_ms": 82.37329978760214,
+        "bad_routing_rate": 0.09000000000000001,
+        "per_mode": {
+          "slow_plus_overload": 1.2115,
+          "three_degraded": 1.1801,
+          "flapping": 1.2098,
+          "failure_then_recovery": 1.03,
+          "mixed_dynamic": 0.8923,
+          "high_latency_one": 1.1546,
+          "uniform_high": 0.8186,
+          "uniform_low": 1.2116
+        }
+      },
+      "train_probe": {
+        "score_in_distribution": 1.1091807073843079,
+        "score_heldout_families": null,
+        "score": 1.1091807073843079,
+        "success_rate": 0.9866666666666667,
+        "avg_response_ms": 40.348735723331025,
+        "p95_latency_ms": 79.03804260008269,
+        "bad_routing_rate": 0.016666666666666666,
+        "per_mode": {
+          "flapping": 1.1855,
+          "failure_then_recovery": 0.8636,
+          "mixed_dynamic": 1.1742,
+          "high_latency_one": 1.2043,
+          "uniform_high": 1.0276,
+          "uniform_low": 1.1999
+        }
+      },
+      "train_td_loss": 0.06696353852748871,
+      "val_td_loss": 0.071597158908844,
+      "epsilon": 0.050000000000000044,
+      "learning_rate": 0.0004109423525312737
+    },
+    {
+      "episode": 80,
+      "val": {
+        "score_in_distribution": 1.044647035163485,
+        "score_heldout_families": 1.1601132875727038,
+        "score": 1.0735135982657897,
+        "success_rate": 0.985,
+        "avg_response_ms": 51.78042315999164,
+        "p95_latency_ms": 129.55503905625096,
+        "bad_routing_rate": 0.0575,
+        "per_mode": {
+          "slow_plus_overload": 1.1404,
+          "three_degraded": 1.1798,
+          "flapping": 1.1865,
+          "failure_then_recovery": 1.1083,
+          "mixed_dynamic": 0.7854,
+          "high_latency_one": 1.1678,
+          "uniform_high": 0.8592,
+          "uniform_low": 1.1607
+        }
+      },
+      "train_probe": {
+        "score_in_distribution": 1.1220937270290996,
+        "score_heldout_families": null,
+        "score": 1.1220937270290996,
+        "success_rate": 0.9866666666666667,
+        "avg_response_ms": 41.74426698999772,
+        "p95_latency_ms": 87.2403573833253,
+        "bad_routing_rate": 0.03666666666666667,
+        "per_mode": {
+          "flapping": 1.2234,
+          "failure_then_recovery": 1.0608,
+          "mixed_dynamic": 1.1142,
+          "high_latency_one": 1.2393,
+          "uniform_high": 0.8753,
+          "uniform_low": 1.2196
+        }
+      },
+      "train_td_loss": 0.05280767381191254,
+      "val_td_loss": 0.06645473837852478,
+      "epsilon": 0.050000000000000044,
+      "learning_rate": 0.0003250000000000001
+    }
+  ]
+}

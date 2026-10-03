@@ -1,0 +1,108 @@
+DQN hyperparameters: DQNHyperparams(n_servers=4, action_dim=4, state_dim=46, hidden_sizes=[256, 128], learning_rate=0.001, gamma=0.9, epsilon_start=1.0, epsilon_min=0.05, epsilon_decay=0.995, batch_size=64, buffer_capacity=20000, target_update_freq=200, min_replay_before_learn=256, grad_clip_norm=5.0, weight_decay=1e-05, lr_min=0.0001, tau=0.0, model_version='cloudload-dqn-v3')
+Validation modes: ['slow_plus_overload', 'three_degraded', 'flapping', 'failure_then_recovery', 'mixed_dynamic', 'high_latency_one', 'uniform_high', 'uniform_low']  (held-out families: ['slow_plus_overload', 'three_degraded'])
+
+Evaluating reference policies on the validation set (for the underfit check)...
+  ref round_robin   score=0.9333 succ= 95.2% lat=  92.7ms bad_routing= 28.2%
+  ref random        score=0.8997 succ= 95.2% lat=  91.4ms bad_routing= 27.0%
+  ref least_active  score=1.0602 succ= 98.2% lat=  60.5ms bad_routing= 15.0%
+[Ep   1/120] uniform_high         r= 0.860 resp=  86.9ms succ= 92.0% bad=  0.0% bg= 1.4rps eps=0.984 lr=1.00e-03 loss=0.0000
+[Ep   2/120] uniform_idle         r= 1.291 resp=  13.0ms succ=100.0% bad=  0.0% bg= 3.6rps eps=0.969 lr=9.99e-04 loss=0.3898
+[Ep   3/120] failure_then_recovery r= 0.835 resp=  46.8ms succ= 96.0% bad=  4.0% bg= 4.3rps eps=0.953 lr=9.99e-04 loss=0.1060
+[Ep   4/120] single_overload      r= 0.780 resp=  79.9ms succ= 92.0% bad= 24.0% bg= 1.3rps eps=0.937 lr=9.98e-04 loss=0.0995
+[Ep   5/120] hard_failure         r= 0.647 resp=  18.6ms succ= 84.0% bad= 16.0% bg= 4.9rps eps=0.921 lr=9.96e-04 loss=0.0998
+[Ep   6/120] overload_shift       r= 0.773 resp=  80.6ms succ= 92.0% bad= 24.0% bg= 4.2rps eps=0.905 lr=9.94e-04 loss=0.1795
+[Ep   7/120] uniform_medium       r= 0.989 resp=  55.4ms succ= 94.0% bad=  0.0% bg= 2.0rps eps=0.889 lr=9.92e-04 loss=0.1199
+[Ep   8/120] uniform_low          r= 1.258 resp=  19.1ms succ=100.0% bad=  0.0% bg= 0.9rps eps=0.874 lr=9.90e-04 loss=0.1164
+  >> VALIDATION ep=8: val=1.0876 train_probe=1.0868 gap=+0.0168 heldout=1.1406 succ= 98.0% bad=  2.5% td(train/val)=0.1044/0.0670 ** new best **
+     saved best checkpoint -> /home/claude/proj/cloud-load-balancer/dqn/../models/dqn_model.pt
+[Ep   9/120] queue_buildup_one    r= 1.216 resp=  23.2ms succ=100.0% bad= 22.0% bg= 0.6rps eps=0.858 lr=9.88e-04 loss=0.0884
+[Ep  10/120] mixed_dynamic        r= 0.732 resp= 111.4ms succ= 94.0% bad= 82.0% bg= 0.8rps eps=0.842 lr=9.85e-04 loss=0.1472
+[Ep  11/120] unequal_load         r= 1.177 resp=  34.1ms succ=100.0% bad= 18.0% bg= 5.0rps eps=0.826 lr=9.81e-04 loss=0.0906
+[Ep  12/120] flapping             r= 0.910 resp=  61.3ms succ= 94.0% bad= 12.0% bg= 3.5rps eps=0.810 lr=9.78e-04 loss=0.0949
+[Ep  13/120] cpu_pressure_one     r= 1.137 resp=  33.7ms succ=100.0% bad= 28.0% bg= 0.3rps eps=0.794 lr=9.74e-04 loss=0.0905
+[Ep  14/120] double_overload      r= 0.541 resp= 134.8ms succ= 90.0% bad= 50.0% bg= 5.9rps eps=0.779 lr=9.70e-04 loss=0.1349
+[Ep  15/120] high_latency_one     r= 1.129 resp=  62.5ms succ= 98.0% bad= 18.0% bg= 5.2rps eps=0.763 lr=9.66e-04 loss=0.1157
+[Ep  16/120] memory_pressure_one  r= 1.089 resp=  27.8ms succ= 96.0% bad= 26.0% bg= 1.7rps eps=0.747 lr=9.61e-04 loss=0.0923
+  >> VALIDATION ep=16: val=1.0725 train_probe=1.1357 gap=+0.0606 heldout=1.0649 succ= 97.8% bad= 15.0% td(train/val)=0.0935/0.0759 
+[Ep  17/120] failure_then_recovery r= 0.910 resp=  46.6ms succ= 96.0% bad=  6.0% bg= 5.9rps eps=0.731 lr=9.56e-04 loss=0.0984
+[Ep  18/120] uniform_medium       r= 1.080 resp=  49.0ms succ=100.0% bad=  0.0% bg= 3.8rps eps=0.715 lr=9.51e-04 loss=0.1239
+[Ep  19/120] double_overload      r= 0.819 resp=  74.1ms succ= 94.0% bad= 26.0% bg= 1.9rps eps=0.699 lr=9.45e-04 loss=0.0942
+[Ep  20/120] overload_shift       r= 0.882 resp=  52.6ms succ= 96.0% bad= 16.0% bg= 4.9rps eps=0.684 lr=9.40e-04 loss=0.1098
+[Ep  21/120] uniform_high         r= 0.798 resp=  88.5ms succ= 94.0% bad=  0.0% bg= 4.8rps eps=0.668 lr=9.34e-04 loss=0.0939
+[Ep  22/120] unequal_load         r= 1.095 resp=  32.6ms succ= 96.0% bad= 10.0% bg= 1.3rps eps=0.652 lr=9.27e-04 loss=0.1374
+[Ep  23/120] single_overload      r= 1.044 resp=  56.4ms succ= 98.0% bad= 14.0% bg= 1.3rps eps=0.636 lr=9.21e-04 loss=0.0973
+[Ep  24/120] uniform_low          r= 1.141 resp=  20.9ms succ= 98.0% bad=  0.0% bg= 3.0rps eps=0.620 lr=9.14e-04 loss=0.0953
+  >> VALIDATION ep=24: val=1.0838 train_probe=1.1274 gap=+0.0318 heldout=1.0485 succ= 98.0% bad= 15.8% td(train/val)=0.1114/0.0709 
+[Ep  25/120] flapping             r= 1.150 resp=  30.9ms succ= 98.0% bad=  2.0% bg= 0.9rps eps=0.604 lr=9.07e-04 loss=0.1006
+[Ep  26/120] high_latency_one     r= 1.165 resp=  92.4ms succ=100.0% bad= 24.0% bg= 1.5rps eps=0.589 lr=9.00e-04 loss=0.1267
+[Ep  27/120] mixed_dynamic        r= 0.897 resp=  99.2ms succ= 98.0% bad= 52.0% bg= 3.1rps eps=0.573 lr=8.92e-04 loss=0.0940
+[Ep  28/120] queue_buildup_one    r= 1.263 resp=  19.7ms succ=100.0% bad=  8.0% bg= 4.5rps eps=0.557 lr=8.84e-04 loss=0.1014
+[Ep  29/120] cpu_pressure_one     r= 1.165 resp=  25.9ms succ= 98.0% bad= 12.0% bg= 0.9rps eps=0.541 lr=8.76e-04 loss=0.0917
+[Ep  30/120] hard_failure         r= 0.653 resp=  19.4ms succ= 84.0% bad= 16.0% bg= 4.8rps eps=0.525 lr=8.68e-04 loss=0.1001
+[Ep  31/120] memory_pressure_one  r= 1.139 resp=  22.6ms succ= 98.0% bad= 12.0% bg= 3.6rps eps=0.509 lr=8.60e-04 loss=0.0929
+[Ep  32/120] uniform_idle         r= 1.246 resp=  13.1ms succ=100.0% bad=  0.0% bg= 2.3rps eps=0.494 lr=8.51e-04 loss=0.0830
+  >> VALIDATION ep=32: val=1.0332 train_probe=1.1234 gap=+0.1070 heldout=1.0832 succ= 97.8% bad=  8.0% td(train/val)=0.0802/0.0751 
+[Ep  33/120] flapping             r= 1.091 resp=  32.3ms succ= 96.0% bad=  6.0% bg= 2.7rps eps=0.478 lr=8.42e-04 loss=0.0774
+[Ep  34/120] queue_buildup_one    r= 1.135 resp=  24.1ms succ= 98.0% bad= 14.0% bg= 5.8rps eps=0.462 lr=8.33e-04 loss=0.0948
+[Ep  35/120] single_overload      r= 1.121 resp=  39.1ms succ=100.0% bad=  8.0% bg= 3.0rps eps=0.446 lr=8.24e-04 loss=0.0753
+[Ep  36/120] hard_failure         r= 1.019 resp=  18.1ms succ= 94.0% bad=  6.0% bg= 5.2rps eps=0.430 lr=8.15e-04 loss=0.0918
+[Ep  37/120] uniform_idle         r= 1.270 resp=  13.4ms succ=100.0% bad=  0.0% bg= 1.8rps eps=0.414 lr=8.05e-04 loss=0.0780
+[Ep  38/120] unequal_load         r= 1.113 resp=  32.2ms succ= 98.0% bad= 14.0% bg= 4.6rps eps=0.399 lr=7.95e-04 loss=0.0881
+[Ep  39/120] uniform_low          r= 1.170 resp=  18.7ms succ= 98.0% bad=  0.0% bg= 3.2rps eps=0.383 lr=7.85e-04 loss=0.0747
+[Ep  40/120] mixed_dynamic        r= 0.994 resp=  75.5ms succ= 96.0% bad= 36.0% bg= 1.4rps eps=0.367 lr=7.75e-04 loss=0.0751
+  >> VALIDATION ep=40: val=1.1023 train_probe=1.0890 gap=+0.0124 heldout=1.1792 succ= 98.8% bad=  7.0% td(train/val)=0.0730/0.0714 ** new best **
+     saved best checkpoint -> /home/claude/proj/cloud-load-balancer/dqn/../models/dqn_model.pt
+[Ep  41/120] overload_shift       r= 1.097 resp=  37.8ms succ= 98.0% bad=  8.0% bg= 5.7rps eps=0.351 lr=7.65e-04 loss=0.0790
+[Ep  42/120] cpu_pressure_one     r= 1.160 resp=  23.3ms succ=100.0% bad=  6.0% bg= 4.4rps eps=0.335 lr=7.54e-04 loss=0.0813
+[Ep  43/120] double_overload      r= 1.062 resp=  54.7ms succ= 98.0% bad= 18.0% bg= 4.6rps eps=0.319 lr=7.44e-04 loss=0.0753
+[Ep  44/120] uniform_medium       r= 1.040 resp=  58.3ms succ= 98.0% bad=  0.0% bg= 0.8rps eps=0.304 lr=7.33e-04 loss=0.0784
+[Ep  45/120] failure_then_recovery r= 0.912 resp=  55.5ms succ= 96.0% bad=  4.0% bg= 5.7rps eps=0.288 lr=7.22e-04 loss=0.0755
+[Ep  46/120] high_latency_one     r= 1.207 resp=  31.8ms succ=100.0% bad=  4.0% bg= 1.6rps eps=0.272 lr=7.11e-04 loss=0.0725
+[Ep  47/120] memory_pressure_one  r= 1.195 resp=  18.7ms succ= 98.0% bad=  2.0% bg= 5.8rps eps=0.256 lr=7.00e-04 loss=0.0669
+[Ep  48/120] uniform_high         r= 0.859 resp=  95.3ms succ= 96.0% bad=  0.0% bg= 5.6rps eps=0.240 lr=6.89e-04 loss=0.0690
+  >> VALIDATION ep=48: val=1.0952 train_probe=1.1283 gap=+0.0423 heldout=1.1227 succ= 98.5% bad=  3.5% td(train/val)=0.0770/0.0723 
+[Ep  49/120] cpu_pressure_one     r= 1.156 resp=  30.6ms succ=100.0% bad= 22.0% bg= 3.5rps eps=0.224 lr=6.78e-04 loss=0.0685
+[Ep  50/120] failure_then_recovery r= 0.967 resp=  46.6ms succ= 96.0% bad=  2.0% bg= 0.4rps eps=0.209 lr=6.66e-04 loss=0.0776
+[Ep  51/120] single_overload      r= 1.157 resp=  24.1ms succ=100.0% bad=  2.0% bg= 1.4rps eps=0.193 lr=6.55e-04 loss=0.0746
+[Ep  52/120] hard_failure         r= 1.145 resp=  19.3ms succ= 98.0% bad=  4.0% bg= 5.2rps eps=0.177 lr=6.44e-04 loss=0.0717
+[Ep  53/120] unequal_load         r= 1.222 resp=  18.1ms succ=100.0% bad=  2.0% bg= 1.7rps eps=0.161 lr=6.32e-04 loss=0.0703
+[Ep  54/120] flapping             r= 1.063 resp=  52.8ms succ= 98.0% bad=  6.0% bg= 1.3rps eps=0.145 lr=6.20e-04 loss=0.0745
+[Ep  55/120] double_overload      r= 0.970 resp=  49.2ms succ= 96.0% bad= 14.0% bg= 5.6rps eps=0.129 lr=6.09e-04 loss=0.0729
+[Ep  56/120] memory_pressure_one  r= 1.206 resp=  19.6ms succ=100.0% bad=  0.0% bg= 1.5rps eps=0.114 lr=5.97e-04 loss=0.0618
+  >> VALIDATION ep=56: val=1.0995 train_probe=1.1077 gap=+0.0262 heldout=1.1535 succ= 98.5% bad=  9.2% td(train/val)=0.0837/0.0692 
+[Ep  57/120] queue_buildup_one    r= 1.111 resp=  22.1ms succ= 96.0% bad=  8.0% bg= 4.8rps eps=0.098 lr=5.85e-04 loss=0.0703
+[Ep  58/120] uniform_idle         r= 1.221 resp=  12.6ms succ=100.0% bad=  0.0% bg= 1.1rps eps=0.082 lr=5.74e-04 loss=0.0840
+[Ep  59/120] uniform_low          r= 1.222 resp=  18.1ms succ=100.0% bad=  0.0% bg= 0.6rps eps=0.066 lr=5.62e-04 loss=0.0557
+[Ep  60/120] high_latency_one     r= 1.068 resp=  45.0ms succ= 96.0% bad=  8.0% bg= 2.1rps eps=0.050 lr=5.50e-04 loss=0.0648
+[Ep  61/120] mixed_dynamic        r= 1.204 resp=  27.9ms succ=100.0% bad=  8.0% bg= 1.5rps eps=0.050 lr=5.38e-04 loss=0.0722
+[Ep  62/120] overload_shift       r= 1.126 resp=  19.2ms succ= 98.0% bad=  0.0% bg= 2.7rps eps=0.050 lr=5.26e-04 loss=0.0724
+[Ep  63/120] uniform_high         r= 0.809 resp= 100.7ms succ= 94.0% bad=  0.0% bg= 2.5rps eps=0.050 lr=5.15e-04 loss=0.0691
+[Ep  64/120] uniform_medium       r= 0.994 resp=  54.0ms succ= 96.0% bad=  0.0% bg= 1.7rps eps=0.050 lr=5.03e-04 loss=0.0730
+  >> VALIDATION ep=64: val=1.0670 train_probe=1.0662 gap=+0.0053 heldout=1.0854 succ= 98.5% bad=  3.5% td(train/val)=0.0641/0.0636 
+[Ep  65/120] memory_pressure_one  r= 1.231 resp=  23.2ms succ=100.0% bad=  2.0% bg= 5.2rps eps=0.050 lr=4.91e-04 loss=0.0583
+[Ep  66/120] overload_shift       r= 1.110 resp=  28.4ms succ= 98.0% bad=  4.0% bg= 2.3rps eps=0.050 lr=4.80e-04 loss=0.0674
+[Ep  67/120] uniform_low          r= 1.188 resp=  20.3ms succ= 98.0% bad=  0.0% bg= 5.9rps eps=0.050 lr=4.68e-04 loss=0.0678
+[Ep  68/120] hard_failure         r= 1.210 resp=  20.6ms succ=100.0% bad=  0.0% bg= 5.6rps eps=0.050 lr=4.56e-04 loss=0.0763
+[Ep  69/120] queue_buildup_one    r= 1.221 resp=  21.9ms succ=100.0% bad=  6.0% bg= 1.7rps eps=0.050 lr=4.45e-04 loss=0.0632
+[Ep  70/120] flapping             r= 0.969 resp=  49.5ms succ= 96.0% bad=  4.0% bg= 0.9rps eps=0.050 lr=4.34e-04 loss=0.0775
+[Ep  71/120] uniform_idle         r= 1.241 resp=  12.2ms succ=100.0% bad=  0.0% bg= 1.8rps eps=0.050 lr=4.22e-04 loss=0.0631
+[Ep  72/120] failure_then_recovery r= 1.110 resp=  57.0ms succ=100.0% bad=  0.0% bg= 3.5rps eps=0.050 lr=4.11e-04 loss=0.0771
+  >> VALIDATION ep=72: val=1.0886 train_probe=1.1092 gap=+0.0564 heldout=1.1958 succ= 98.5% bad=  9.0% td(train/val)=0.0670/0.0716 
+[Ep  73/120] high_latency_one     r= 1.097 resp=  20.6ms succ= 96.0% bad=  0.0% bg= 4.5rps eps=0.050 lr=4.00e-04 loss=0.0590
+[Ep  74/120] mixed_dynamic        r= 1.102 resp=  44.8ms succ= 98.0% bad=  6.0% bg= 0.5rps eps=0.050 lr=3.89e-04 loss=0.0678
+[Ep  75/120] unequal_load         r= 1.189 resp=  26.4ms succ=100.0% bad=  0.0% bg= 4.0rps eps=0.050 lr=3.78e-04 loss=0.0627
+[Ep  76/120] double_overload      r= 1.154 resp=  27.0ms succ=100.0% bad=  2.0% bg= 0.7rps eps=0.050 lr=3.67e-04 loss=0.0660
+[Ep  77/120] uniform_high         r= 0.816 resp=  95.4ms succ= 94.0% bad=  0.0% bg= 5.3rps eps=0.050 lr=3.56e-04 loss=0.0681
+[Ep  78/120] single_overload      r= 1.203 resp=  22.0ms succ=100.0% bad=  0.0% bg= 3.5rps eps=0.050 lr=3.46e-04 loss=0.0571
+[Ep  79/120] uniform_medium       r= 1.064 resp=  55.0ms succ= 98.0% bad=  0.0% bg= 0.2rps eps=0.050 lr=3.35e-04 loss=0.0611
+[Ep  80/120] cpu_pressure_one     r= 1.217 resp=  23.1ms succ=100.0% bad=  4.0% bg= 2.5rps eps=0.050 lr=3.25e-04 loss=0.0707
+  >> VALIDATION ep=80: val=1.0735 train_probe=1.1221 gap=+0.0774 heldout=1.1601 succ= 98.5% bad=  5.8% td(train/val)=0.0528/0.0665 
+  >> EARLY STOPPING at episode 80 (no validation improvement for 5 evaluations). Best = episode 40.
+
+========================================================================
+FIT DIAGNOSIS: GOOD FIT
+  - validation score 1.1023 beats best reference 'least_active' (1.0602); train/val gap 0.0124 within tolerance 0.15; held-out/train TD-loss ratio 0.98
+Best checkpoint: episode 40 -> /home/claude/proj/cloud-load-balancer/dqn/../models/dqn_model.pt
+Logs: /home/claude/proj/cloud-load-balancer/dqn/../logs/training_history.csv, /home/claude/proj/cloud-load-balancer/dqn/../logs/validation_history.json, /home/claude/proj/cloud-load-balancer/dqn/../logs/fit_report.json
+Next: curl -X POST http://localhost:8003/reload_model   then   python testing/stress_test_suite.py
+========================================================================

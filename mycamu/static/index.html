@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TCE MyCamu</title>
+  <link rel="stylesheet" href="/static/css/app.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231e3a8a'/%3E%3Ctext x='32' y='42' font-size='28' text-anchor='middle' fill='white' font-family='Arial' font-weight='700'%3EM%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+  <!-- LOGIN -->
+  <div id="login-view" class="login-view hidden">
+    <div class="login-card">
+      <div class="login-brand">
+        <div class="logo-mark">M</div>
+        <div>
+          <h1>TCE MYCAMU</h1>
+          <p>Student Management Portal</p>
+        </div>
+      </div>
+      <form id="login-form" autocomplete="on">
+        <label>Student ID
+          <input id="login-id" name="student_id" placeholder="e.g. student001" required autocomplete="username">
+        </label>
+        <label>Password
+          <input id="login-pw" name="password" type="password" placeholder="Password" required autocomplete="current-password">
+        </label>
+        <div id="login-error" class="form-error hidden"></div>
+        <button class="btn btn-primary btn-block" type="submit" id="login-btn">LOGIN</button>
+      </form>
+      <div class="demo-accounts">
+        <div class="muted small">Demo accounts (password in README)</div>
+        <div id="demo-list" class="demo-list"></div>
+      </div>
+      <div class="login-foot">Thiagarajar College of Engineering · Cloud Load-Balancing Demo</div>
+    </div>
+    <div class="login-art">
+      <h2>Course registration, powered by a learned load balancer</h2>
+      <p>Every enrollment is a real request routed by DQN, Round Robin, Least Connections or ACO across four backend servers. Watch the decisions live.</p>
+      <ul>
+        <li>Real Q-values from the trained Deep Q-Network</li>
+        <li>Live server metrics, failures and recovery</li>
+        <li>Traffic Control Center and algorithm comparison</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- APP -->
+  <div id="app-view" class="app hidden">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand"><div class="logo-mark sm">M</div><div><b>TCE MyCamu</b><span>Student Portal</span></div></div>
+      <nav>
+        <div class="nav-group">Student</div>
+        <a href="#/dashboard" data-page="dashboard"><i>▦</i>Dashboard</a>
+        <a href="#/courses" data-page="courses"><i>📚</i>Courses</a>
+        <a href="#/enrollment" data-page="enrollment"><i>✎</i>Enrollment</a>
+        <a href="#/timetable" data-page="timetable"><i>🗓</i>Timetable</a>
+        <a href="#/fees" data-page="fees"><i>₹</i>Fees</a>
+        <a href="#/history" data-page="history"><i>⟲</i>Registration History</a>
+        <div class="nav-group">Load Balancing</div>
+        <a href="#/dqn" data-page="dqn"><i>🧠</i>DQN Monitor</a>
+        <a href="#/servers" data-page="servers"><i>🖥</i>Server Monitor</a>
+        <a href="#/lab" data-page="lab"><i>⚗</i>Server Lab</a>
+        <a href="#/traffic" data-page="traffic"><i>⇶</i>Traffic Control Center</a>
+        <a href="#/compare" data-page="compare"><i>📊</i>Algorithm Comparison</a>
+        <a href="#/health" data-page="health"><i>♥</i>System Health</a>
+      </nav>
+    </aside>
+    <div class="main">
+      <header class="topbar">
+        <button class="icon-btn" id="menu-btn" title="Menu">☰</button>
+        <div class="page-title" id="page-title">Dashboard</div>
+        <div class="topbar-right">
+          <label class="algo-select" title="Load-balancing algorithm used for registrations and rush tests">
+            <span>Routing</span>
+            <select id="algo-select">
+              <option value="dqn">DQN</option>
+              <option value="round_robin">Round Robin</option>
+              <option value="least_connections">Least Connections</option>
+              <option value="aco">ACO</option>
+            </select>
+          </label>
+          <div class="user-chip" id="user-chip"></div>
+          <button class="btn btn-ghost" id="logout-btn">Logout</button>
+        </div>
+      </header>
+      <main id="page" class="page"></main>
+    </div>
+  </div>
+
+  <div id="modal-root"></div>
+  <div id="toasts" class="toasts"></div>
+  <script src="/static/js/app.js"></script>
+  <script src="/static/js/tech.js"></script>
+</body>
+</html>

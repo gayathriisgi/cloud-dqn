@@ -1,0 +1,61 @@
+# monitoring/prometheus/prometheus.local.yml
+# =============================================
+# Added alongside prometheus.yml (which is unchanged and still used by
+# `docker compose up`). This variant is for running the project's
+# servers/balancers as plain local processes instead of Docker
+# containers (e.g. in a sandbox with no Docker registry access): the
+# only difference from prometheus.yml is that scrape targets point at
+# 127.0.0.1:<port> instead of Docker Compose service DNS names,
+# because there is no Docker network to resolve those names on.
+# Job names, metrics_path and ports are otherwise identical.
+
+global:
+  scrape_interval: 5s
+  evaluation_interval: 5s
+
+scrape_configs:
+  - job_name: "backend_servers"
+    metrics_path: /prometheus
+    static_configs:
+      - targets:
+          - "127.0.0.1:5001"
+          - "127.0.0.1:5002"
+          - "127.0.0.1:5003"
+          - "127.0.0.1:5004"
+        labels:
+          component: "backend"
+
+  - job_name: "round_robin"
+    static_configs:
+      - targets: ["127.0.0.1:9000"]
+        labels:
+          component: "load_balancer"
+          algorithm: "round_robin"
+
+  - job_name: "least_connections"
+    static_configs:
+      - targets: ["127.0.0.1:9001"]
+        labels:
+          component: "load_balancer"
+          algorithm: "least_connections"
+
+  - job_name: "aco"
+    static_configs:
+      - targets: ["127.0.0.1:9002"]
+        labels:
+          component: "load_balancer"
+          algorithm: "aco"
+
+  - job_name: "dqn"
+    static_configs:
+      - targets: ["127.0.0.1:9003"]
+        labels:
+          component: "load_balancer"
+          algorithm: "dqn"
+
+  - job_name: "mycamu"
+    metrics_path: /metrics
+    static_configs:
+      - targets: ["127.0.0.1:8080"]
+        labels:
+          component: "frontend"

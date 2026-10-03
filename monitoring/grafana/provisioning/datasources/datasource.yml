@@ -1,0 +1,15 @@
+# Auto-provisions Prometheus as Grafana's data source (Section 11:
+# "Automatically provision Prometheus as the data source where
+# possible"). Grafana reads this file on startup - no manual UI steps.
+apiVersion: 1
+
+datasources:
+  - name: Prometheus
+    uid: prometheus
+    type: prometheus
+    access: proxy
+    url: http://prometheus:9090
+    isDefault: true
+    editable: true
+    jsonData:
+      timeInterval: "5s"
